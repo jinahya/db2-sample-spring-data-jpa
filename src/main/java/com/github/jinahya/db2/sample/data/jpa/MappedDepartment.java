@@ -1,5 +1,6 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -103,20 +105,42 @@ public abstract class MappedDepartment<
 
     // ----------------------------------------------------------------------------------------------------------- mgrno
 
+    @Nullable
+    protected String getMgrno() {
+        return mgrno;
+    }
+
+    protected void setMgrno(@Nullable final String mgrno) {
+        this.mgrno = mgrno;
+    }
+
     // ------------------------------------------------------------------------------------------------------------- mgr
     public EMPLOYEE getMgr() {
         return mgr;
     }
 
     public void setMgr(final EMPLOYEE mgr) {
+        this.mgr = mgr;
         setMgrno(
-                Optional.ofNullable(mgr)
+                Optional.ofNullable(this.mgr)
                         .map(MappedEmployee::getEmpno)
                         .orElse(null)
         );
     }
 
     // -------------------------------------------------------------------------------------------------------- admrdept
+    public SELF getAdmrdept() {
+        return admrdept;
+    }
+
+    public void setAdmrdept(final SELF admrdept) {
+        this.admrdept = admrdept;
+    }
+
+    @Transient
+    public Optional<SELF> getAdmrdeptEffective() {
+        return Optional.ofNullable(getAdmrdept()).filter(v -> !Objects.equals(this, v));
+    }
 
     // -------------------------------------------------------------------------------------------------------- location
 

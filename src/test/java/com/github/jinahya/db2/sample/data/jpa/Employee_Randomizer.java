@@ -1,8 +1,12 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.co.jemos.podam.api.DataProviderStrategy;
 import uk.co.jemos.podam.api.PodamFactory;
 
+import java.math.BigDecimal;
+
+@Slf4j
 class Employee_Randomizer extends __MappedEntity_Randomizer<Employee> {
 
     Employee_Randomizer() {
@@ -13,7 +17,21 @@ class Employee_Randomizer extends __MappedEntity_Randomizer<Employee> {
 
     @Override
     DataProviderStrategy strategy() {
-        return super.strategy();
+        return super.strategy()
+                .addOrReplaceAttributeStrategy(MappedDepartment.class, "workdept", (t, a) -> {
+                    log.debug("type: {}, annotations: {}", t, a);
+                    return null;
+                })
+                .addOrReplaceAttributeStrategy(BigDecimal.class, "salary", (t, a) -> {
+                    return null;
+                })
+                .addOrReplaceAttributeStrategy(BigDecimal.class, "bonus", (t, a) -> {
+                    return null;
+                })
+                .addOrReplaceAttributeStrategy(BigDecimal.class, "comm", (t, a) -> {
+                    return null;
+                })
+                ;
     }
 
     @Override
@@ -23,6 +41,10 @@ class Employee_Randomizer extends __MappedEntity_Randomizer<Employee> {
 
     @Override
     Employee get() {
-        return super.get();
+        final var value = super.get();
+        value.setSalary(null);
+        value.setBonus(null);
+        value.setComm(null);
+        return value;
     }
 }

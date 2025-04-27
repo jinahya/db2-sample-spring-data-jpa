@@ -12,6 +12,7 @@ class Employee_Persister extends __MappedEntity_Persister<Employee> {
 
     @Override
     Employee persist(final EntityManager entityManager, final Employee entityInstance) {
+        entityInstance.setWorkdept(null);
         return super.persist(entityManager, entityInstance);
     }
 }

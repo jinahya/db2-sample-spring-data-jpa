@@ -59,7 +59,8 @@ abstract class __MappedEntityRepository_DataJpaTest<
      * Returns a new persisted instance of {@link #entityClass}.
      *
      * @return a new persisted instance of {@link #entityClass}
-     * @see com.github.jinahya.db2.sample.data.jpa.__MappedEntity_Persister_Utils#newPersistedInstanceOf(Class, EntityManager)
+     * @see com.github.jinahya.db2.sample.data.jpa.__MappedEntity_Persister_Utils#newPersistedInstanceOf(Class,
+     * EntityManager)
      */
     @Override
     ENTITY newPersistedEntityInstance() {

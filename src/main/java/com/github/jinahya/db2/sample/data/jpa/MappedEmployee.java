@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -195,16 +196,19 @@ public abstract class MappedEmployee<
     private LocalDate birthdate;
 
     @jakarta.annotation.Nullable
+    @DecimalMax("9999999.99")
     @Basic(optional = true)
     @Column(name = "SALARY", nullable = true, insertable = true, updatable = true, precision = 9, scale = 2)
     private BigDecimal salary;
 
     @jakarta.annotation.Nullable
+    @DecimalMax("9999999.99")
     @Basic(optional = true)
     @Column(name = "BONUS", nullable = true, insertable = true, updatable = true, precision = 9, scale = 2)
     private BigDecimal bonus;
 
     @jakarta.annotation.Nullable
+    @DecimalMax("9999999.99")
     @Basic(optional = true)
     @Column(name = "COMM", nullable = true, insertable = true, updatable = true, precision = 9, scale = 2)
     private BigDecimal comm;
