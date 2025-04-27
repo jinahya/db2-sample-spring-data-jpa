@@ -12,7 +12,7 @@ class __MappedEntityUtilsTest {
     class ResolveIdClassTest {
 
         @CsvSource({
-                "com.github.jinahya.db2.sample.data.jpa.ApplicationSigning,java.lang.Long"
+                "com.github.jinahya.db2.sample.data.jpa.Act,java.lang.Integer"
         })
         @ParameterizedTest
         void __(final String entityClassName, final String idClassName) throws ClassNotFoundException {

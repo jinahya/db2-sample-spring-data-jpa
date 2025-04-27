@@ -11,6 +11,7 @@ import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,9 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
 
 /**
  * An abstract mapped superclass for mapping {@value MappedDepartment#TABLE_NAME} table.
@@ -38,7 +37,9 @@ import java.util.function.Function;
 @SuppressWarnings({
         "java:S119" // Type parameter names should comply with a naming convention
 })
-public abstract class MappedDepartment<SELF extends MappedDepartment<SELF>>
+public abstract class MappedDepartment<
+        SELF extends MappedDepartment<SELF, EMPLOYEE>,
+        EMPLOYEE extends MappedEmployee<EMPLOYEE, SELF>>
         extends __MappedEntity<SELF, String> {
 
     @Serial
@@ -103,15 +104,11 @@ public abstract class MappedDepartment<SELF extends MappedDepartment<SELF>>
     // ----------------------------------------------------------------------------------------------------------- mgrno
 
     // ------------------------------------------------------------------------------------------------------------- mgr
-    public <EMPLOYEE extends MappedEmployee<EMPLOYEE>> EMPLOYEE getMgr(
-            final Function<? super String, ? extends EMPLOYEE> mapper) {
-        Objects.requireNonNull(mapper, "mapper is null");
-        return Optional.ofNullable(getMgrno())
-                .map(mapper)
-                .orElse(null);
+    public EMPLOYEE getMgr() {
+        return mgr;
     }
 
-    public <EMPLOYEE extends MappedEmployee<EMPLOYEE>> void setMgr(final EMPLOYEE mgr) {
+    public void setMgr(final EMPLOYEE mgr) {
         setMgrno(
                 Optional.ofNullable(mgr)
                         .map(MappedEmployee::getEmpno)
@@ -143,6 +140,14 @@ public abstract class MappedDepartment<SELF extends MappedDepartment<SELF>>
     @Column(name = COLUMN_NAME_MGRNO, nullable = true, insertable = true, updatable = true)
     private String mgrno;
 
+    @jakarta.annotation.Nullable
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = COLUMN_NAME_MGRNO, referencedColumnName = EMPLOYEE.COLUMN_NAME_EMPNO, nullable = true,
+                insertable = false, updatable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private EMPLOYEE mgr;
+
     //    @Valid
 //    @NotNull
     @org.hibernate.annotations.OnDelete(action = OnDeleteAction.CASCADE)
@@ -152,6 +157,8 @@ public abstract class MappedDepartment<SELF extends MappedDepartment<SELF>>
     @JoinColumn(name = "ADMRDEPT", referencedColumnName = MappedDepartment.COLUMN_NAME_DEPTNO,
 //                nullable = false,
                 insertable = true, updatable = true)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private SELF admrdept;
 
     @jakarta.annotation.Nullable

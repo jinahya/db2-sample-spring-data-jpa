@@ -12,7 +12,7 @@ import java.io.Serial;
 @Table(name = MappedDepartment.TABLE_NAME)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Slf4j
-public class Department extends MappedDepartment<Department> {
+public class Department extends MappedDepartment<Department, Employee> {
 
     @Serial
     private static final long serialVersionUID = 8256421760603270571L;

@@ -17,8 +17,8 @@ class __MappedEntityRepositoryUtilsTest {
     class ResolveEntityClassTest {
 
         @CsvSource({
-                "com.github.jinahya.db2.sample.data.jpa.repository.ApplicationSigningRepository" +
-                        ",com.github.jinahya.db2.sample.data.jpa.ApplicationSigning"
+                "com.github.jinahya.db2.sample.data.jpa.repository.ActRepository" +
+                        ",com.github.jinahya.db2.sample.data.jpa.Act"
         })
         @ParameterizedTest
         void __(final String repositoryClassName, final String entityClassName) throws ClassNotFoundException {

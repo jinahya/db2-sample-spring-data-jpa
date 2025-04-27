@@ -2,7 +2,10 @@ package com.github.jinahya.db2.sample.data.jpa;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
 import jakarta.validation.Valid;
@@ -11,6 +14,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +34,9 @@ import java.time.LocalDate;
 @SuppressWarnings({
         "java:S119" // Type parameter names should comply with a naming convention
 })
-public abstract class MappedEmployee<SELF extends MappedEmployee<SELF>>
+public abstract class MappedEmployee<
+        SELF extends MappedEmployee<SELF, DEPARTMENT>,
+        DEPARTMENT extends MappedDepartment<DEPARTMENT, SELF>>
         extends __MappedEntity<SELF, String> {
 
     @Serial
@@ -139,11 +145,20 @@ public abstract class MappedEmployee<SELF extends MappedEmployee<SELF>>
     @Column(name = "LASTNAME", nullable = false, insertable = true, updatable = true)
     private String lastname;
 
+//    @jakarta.annotation.Nullable
+//    @Valid
+//    @Basic(optional = true)
+//    @Column(name = COLUMN_NAME_WORKDEPT, nullable = true, insertable = true, updatable = true)
+//    private String workdept;
+
     @jakarta.annotation.Nullable
     @Valid
-    @Basic(optional = true)
-    @Column(name = COLUMN_NAME_WORKDEPT, nullable = true, insertable = true, updatable = true)
-    private String workdept;
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = COLUMN_NAME_WORKDEPT, referencedColumnName = MappedDepartment.COLUMN_NAME_DEPTNO,
+                nullable = true, insertable = true, updatable = true)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private DEPARTMENT workdept;
 
     @Size(max = 4)
     @Basic(optional = true)

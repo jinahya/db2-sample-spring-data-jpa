@@ -7,7 +7,7 @@ import java.io.Serial;
 
 @Entity
 @Table(name = MappedEmployee.TABLE_NAME)
-public class Employee extends MappedEmployee<Employee> {
+public class Employee extends MappedEmployee<Employee, Department> {
 
     @Serial
     private static final long serialVersionUID = -4431468269306894643L;

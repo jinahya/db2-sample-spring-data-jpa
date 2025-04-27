@@ -11,11 +11,11 @@ class Employee_Test extends __MappedEntity_Test<Employee, String> {
     @Override
     protected SingleTypeEqualsVerifierApi<Employee> equalsVerifier() {
         return super.equalsVerifier()
-//                .withPrefabValues(
-//                        MappedDepartment.class,
-//                        (MappedDepartment<?, ?>) __MappedEntity.of_id_(Department::new, "1"),
-//                        (MappedDepartment<?, ?>) __MappedEntity.of_id_(Department::new, "2")
-//                )
+                .withPrefabValues(
+                        MappedDepartment.class,
+                        (MappedDepartment<?, ?>) __MappedEntity.of_id_(Department::new, "1"),
+                        (MappedDepartment<?, ?>) __MappedEntity.of_id_(Department::new, "2")
+                )
                 ;
     }
 }
