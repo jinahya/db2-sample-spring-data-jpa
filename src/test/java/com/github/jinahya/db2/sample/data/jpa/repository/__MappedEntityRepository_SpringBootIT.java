@@ -8,11 +8,10 @@ import com.github.jinahya.db2.sample.data.jpa.__MappedEntity_SpringBootIT_Config
 import jakarta.persistence.EntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
-@Transactional
+//@Transactional
 @SpringBootTest
 @ContextConfiguration(
         classes = {

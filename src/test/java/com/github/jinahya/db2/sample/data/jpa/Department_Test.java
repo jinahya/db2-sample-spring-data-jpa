@@ -20,7 +20,6 @@ class Department_Test extends __MappedEntity_Test<Department, String> {
     @Override
     protected SingleTypeEqualsVerifierApi<Department> equalsVerifier() {
         return super.equalsVerifier()
-//                .withIgnoredFields("mgr")
                 .withPrefabValues(
                         MappedEmployee.class,
                         (MappedEmployee<?, ?>) __MappedEntity.of_id_(Employee::new, "1"),

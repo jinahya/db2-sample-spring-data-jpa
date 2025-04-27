@@ -16,6 +16,11 @@ class Employee_Test extends __MappedEntity_Test<Employee, String> {
                         (MappedDepartment<?, ?>) __MappedEntity.of_id_(Department::new, "1"),
                         (MappedDepartment<?, ?>) __MappedEntity.of_id_(Department::new, "2")
                 )
+                .withPrefabValues(
+                        MappedEmployee.class,
+                        (MappedEmployee<?, ?>) __MappedEntity.of_id_(Employee::new, "1"),
+                        (MappedEmployee<?, ?>) __MappedEntity.of_id_(Employee::new, "2")
+                )
                 ;
     }
 }

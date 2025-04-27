@@ -1,6 +1,5 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.github.jinahya.db2.sample.data.util.BeanValidationTestUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -91,6 +90,7 @@ public abstract class __MappedEntity_Test<ENTITY extends __MappedEntity<ENTITY, 
                 .forClass(entityClass)
                 .suppress(Warning.SURROGATE_KEY)
                 .suppress(Warning.STRICT_HASHCODE)
+                .suppress(Warning.ALL_FIELDS_SHOULD_BE_USED)
                 ;
     }
 

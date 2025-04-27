@@ -1,5 +1,6 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
+import com.github.jinahya.db2.sample.data.util.BeanValidationTestUtils;
 import jakarta.persistence.EntityManager;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,6 +19,7 @@ import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @Slf4j
 @SuppressWarnings({
         "java:S119" // Type parameter names should comply with a naming convention
@@ -31,14 +33,17 @@ abstract class ___MappedEntity_DataJpaTest<ENTITY extends __MappedEntity<ENTITY,
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    @Transactional
+//    @Transactional
     @Test
     void persist() {
         final var persisted = applyEntityManager(
                 em -> __MappedEntity_Persister_Utils.newPersistedInstanceOf(entityClass, em)
         );
         log.debug("persisted: {}", persisted);
-        final var selected = applyEntityManager(em -> em.find(entityClass, persisted._id_()));
+        final var _id_ = persisted._id_();
+        log.debug("_id_: {}", _id_);
+        BeanValidationTestUtils.requireValid(_id_);
+        final var selected = applyTestEntityManager(em -> em.find(entityClass, _id_));
         log.debug("selected: {}", selected);
         assertThat(selected).isEqualTo(persisted);
     }

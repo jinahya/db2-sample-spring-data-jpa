@@ -3,10 +3,9 @@ package com.github.jinahya.db2.sample.data.jpa;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
-@SuppressWarnings({
-        "java:S119" // Type parameter names should comply with a naming convention
-})
+@Transactional
 @DataJpaTest(properties = {
 //        "logging.level.org.hibernate.SQL=debug",
         "logging.level.org.hibernate.orm.jdbc.bind=trace",
@@ -18,6 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
         }
 )
 @Slf4j
+@SuppressWarnings({
+        "java:S119" // Type parameter names should comply with a naming convention
+})
 abstract class _MappedEntity_DataJpaTest<ENTITY extends _MappedEntity<ENTITY>>
         extends ___MappedEntity_DataJpaTest<ENTITY, Long> {
 

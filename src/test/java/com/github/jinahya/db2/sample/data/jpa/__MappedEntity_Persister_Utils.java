@@ -61,6 +61,24 @@ public final class __MappedEntity_Persister_Utils {
         );
     }
 
+//    public static <T extends __MappedEntity<T, ?>>
+//    T newPersistedInstanceOf(final Class<T> entityClass, final TestEntityManager testEntityManager,
+//                             final T entityInstance) {
+//        Objects.requireNonNull(testEntityManager, "testEntityManager is null");
+//        Objects.requireNonNull(entityInstance, "entityInstance is null");
+//        return getPersisterInstance(entityClass).persist(testEntityManager, entityInstance);
+//    }
+//
+//    public static <T extends __MappedEntity<T, ?>>
+//    T newPersistedInstanceOf(final Class<T> entityClass, final TestEntityManager testEntityManager) {
+//        final var entityInstance = __MappedEntity_Randomizer_Utils.newRandomizedInstanceOf(entityClass);
+//        return newPersistedInstanceOf(
+//                entityClass,
+//                testEntityManager,
+//                entityInstance
+//        );
+//    }
+
     // -----------------------------------------------------------------------------------------------------------------
     private __MappedEntity_Persister_Utils() {
         throw new AssertionError("instantiation is not allowed");

@@ -50,6 +50,7 @@ public abstract class MappedProject<
     public static final String TABLE_NAME = "PROJECT";
 
     // ---------------------------------------------------------------------------------------------------------- PROJNO
+    public static final String COLUMN_NAME_PROJNO = "PROJNO";
 
     // -------------------------------------------------------------------------------------------------------- PROJNAME
 
@@ -144,6 +145,7 @@ public abstract class MappedProject<
     @Column(name = "PROJNAME", nullable = false, insertable = true, updatable = true)
     private String projname;
 
+    // -----------------------------------------------------------------------------------------------------------------
     @Size(max = 3)
     @NotNull
     @Basic(optional = false)
@@ -159,6 +161,7 @@ public abstract class MappedProject<
     @ToString.Exclude
     private DEPARTMENT dept;
 
+    // -----------------------------------------------------------------------------------------------------------------
     // ID of employee responsible for the project
     @Valid
     @NotNull

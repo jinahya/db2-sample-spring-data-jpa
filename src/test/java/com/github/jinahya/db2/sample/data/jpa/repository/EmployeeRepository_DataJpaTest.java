@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,7 +31,7 @@ class EmployeeRepository_DataJpaTest
             assertThat(found).isEmpty();
         }
 
-        @Transactional
+        //        @Transactional
         @DisplayName("(persisted., )[persisted]")
         @Test
         void _NotEmpty_Known() {
