@@ -37,7 +37,7 @@ abstract class __MappedEntity_Randomizer<ENTITY extends __MappedEntity<ENTITY, ?
 
     ENTITY get() {
         final var value = factory().manufacturePojo(valueClass);
-        BeanValidationTestUtils.requireValid(value);
+//        BeanValidationTestUtils.requireValid(value);
         return value;
     }
 

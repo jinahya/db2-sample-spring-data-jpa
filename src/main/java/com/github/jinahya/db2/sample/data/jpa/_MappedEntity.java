@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serial;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * An abstract mapped superclass for entity classes with a {@code Long} primary key.
@@ -37,6 +38,11 @@ public abstract class _MappedEntity<SELF extends _MappedEntity<SELF>> extends __
     private static final long serialVersionUID = -4808475044539366875L;
 
     // ------------------------------------------------------------------------------------------ STATIC_FACTORY_METHODS
+    static <ENTITY extends _MappedEntity<ENTITY>> ENTITY of_id_(
+            final Supplier<? extends ENTITY> supplier,
+            final Long _id_) {
+        return __MappedEntity.of_id_(supplier, _id_);
+    }
 
     // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
 

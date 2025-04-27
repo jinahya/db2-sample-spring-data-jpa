@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * An abstract mapped superclass for entity classes.
@@ -62,6 +63,14 @@ public abstract class __MappedEntity<SELF extends __MappedEntity<SELF, ID>, ID e
     public static final String COLUMN_NAME_DELETED_AT = "deleted_at";
 
     // ------------------------------------------------------------------------------------------ STATIC_FACTORY_METHODS
+    static <ENTITY extends __MappedEntity<ENTITY, ID>, ID extends Serializable> ENTITY of_id_(
+            final Supplier<? extends ENTITY> supplier,
+            final ID _id_) {
+        Objects.requireNonNull(supplier, "supplier is null");
+        final var instance = Objects.requireNonNull(supplier.get(), "null supplied from " + supplier);
+        instance._id_(_id_);
+        return instance;
+    }
 
     // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
 
@@ -93,9 +102,9 @@ public abstract class __MappedEntity<SELF extends __MappedEntity<SELF, ID>, ID e
     // ------------------------------------------------------------------------------------------------------------ _id_
 
     /**
-     * Returns an instance of {@link ID} type of this entity.
+     * Returns an instance of {@code <ID>} type of this entity.
      *
-     * @return an instance of {@link ID} type of this entity.
+     * @return an instance of {@code <ID>} type of this entity.
      */
     @SuppressWarnings({
             "java:S100" // Method names should comply with a naming convention
@@ -103,9 +112,9 @@ public abstract class __MappedEntity<SELF extends __MappedEntity<SELF, ID>, ID e
     public abstract ID _id_();
 
     /**
-     * Replaces current value of {@link ID} type of this entity with specified value.
+     * Replaces current value of {@code <ID>} type of this entity with specified value.
      *
-     * @param _id_ new value of {@link ID} type of this entity
+     * @param _id_ new value of {@code <ID>} type of this entity
      */
     @SuppressWarnings({
             "java:S100", // Method names should comply with a naming convention

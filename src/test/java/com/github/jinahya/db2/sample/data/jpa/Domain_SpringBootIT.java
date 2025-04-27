@@ -17,6 +17,35 @@ import java.util.LinkedHashSet;
 class Domain_SpringBootIT {
 
     @Test
+    void metadata() throws SQLException {
+        try (var connection = dataSource.getConnection()) {
+            final var metaData = connection.getMetaData();
+            try (var r = metaData.getCatalogs()) {
+                while (r.next()) {
+                    final var tableCat = r.getString("TABLE_CAT");
+                    log.debug("TABLE_CAT: {}", tableCat);
+                    log.info("TABLE_CAT: {}", tableCat);
+                    try (var s = metaData.getSchemas(tableCat, "%")) {
+                        while (s.next()) {
+                            final var tableSchem = s.getString("TABLE_SCHEM");
+                            log.debug("\tTABLE_SCHEM: {}", tableSchem);
+                            log.info("\tTABLE_SCHEM: {}", tableSchem);
+                        }
+                    }
+                }
+            }
+            try (var r = metaData.getSchemas()) {
+                while (r.next()) {
+                    final var tableCatalog = r.getString("TABLE_CATALOG");
+                    final var tableSchem = r.getString("TABLE_SCHEM");
+                    log.debug("TABLE_SCHEM: {}", tableSchem);
+                    log.info("TABLE_CATALOG: {}, TABLE_SCHEM: {}", tableCatalog, tableSchem);
+                }
+            }
+        }
+    }
+
+    @Test
     void jdbcTableNames__() throws SQLException {
         final var jdbcTtableNames = new LinkedHashSet<>(JdbcTestUtils.getTableNames(dataSource.getConnection()));
         log.warn("number of all tables: {}", jdbcTtableNames.size());

@@ -13,9 +13,11 @@ import java.util.function.Consumer;
 @Slf4j
 public class JdbcTestUtils {
 
-    private static final String CATALOG = null;
+        private static final String CATALOG = null;
+//    private static final String CATALOG = "CFF8252A-1D8E-475C-B21E-3E49C5AF383A";
 
     private static final String SCHEMA = "DB2INST1";
+//    private static final String SCHEMA = null;
 
     // -----------------------------------------------------------------------------------------------------------------
     public static void acceptEachTableName(final Connection connection, final Consumer<? super String> consumer)
@@ -58,21 +60,6 @@ public class JdbcTestUtils {
 
     public static List<String> getAllColumnNames(final Connection connection, final String tableName)
             throws SQLException {
-        if (false) {
-            final var metaData = connection.getMetaData();
-            try (var c = metaData.getCatalogs()) {
-                while (c.next()) {
-                    final var tableCat = c.getString("TABLE_CAT");
-                    log.debug("tableCat: {}", tableCat);
-                }
-            }
-            try (var c = metaData.getSchemas()) {
-                while (c.next()) {
-                    final var tableSchem = c.getString("TABLE_SCHEM");
-                    log.debug("tableSchem: {}", tableSchem);
-                }
-            }
-        }
         return Collections.unmodifiableList(
                 addAllColumnNames(connection, tableName, new ArrayList<>())
         );

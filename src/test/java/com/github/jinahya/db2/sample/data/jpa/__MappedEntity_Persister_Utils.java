@@ -54,7 +54,6 @@ public final class __MappedEntity_Persister_Utils {
     public static <T extends __MappedEntity<T, ?>>
     T newPersistedInstanceOf(final Class<T> entityClass, final EntityManager entityManager) {
         final var entityInstance = __MappedEntity_Randomizer_Utils.newRandomizedInstanceOf(entityClass);
-//        BeanValidationTestUtils.requireValid(entityInstance);
         return newPersistedInstanceOf(
                 entityClass,
                 entityManager,

@@ -26,7 +26,6 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -131,16 +130,19 @@ abstract class ___MappedEntity_SpringBootIT<ENTITY extends __MappedEntity<ENTITY
 
     // ------------------------------------------------------------------------------------------------- jdbcColumnNames
     List<String> jdbcColumnNames() throws SQLException {
+        final var tableName = jdbcTableName();
         if (jdbcColumnNames == null) {
             jdbcColumnNames = applyConnection(c -> {
                 try {
-                    return JdbcTestUtils.getAllColumnNames(c, jpaTableName());
+                    return JdbcTestUtils.getAllColumnNames(c, tableName);
                 } catch (final SQLException sqle) {
                     throw new RuntimeException(sqle);
                 }
             });
         }
-        assertThat(jdbcColumnNames).isNotEmpty();
+        assertThat(jdbcColumnNames)
+                .as("jdbc column names for %1$s table", tableName)
+                .isNotEmpty();
         return jdbcColumnNames.stream()
                 .distinct()
                 .map(String::toUpperCase)
@@ -170,13 +172,16 @@ abstract class ___MappedEntity_SpringBootIT<ENTITY extends __MappedEntity<ENTITY
 
     // ----------------------------------------------------------------------------------------------- entityColumnNames
     List<String> jpaColumnNames() {
+        final var tableName = jpaTableName();
         if (jpaColumnNames == null) {
             jpaColumnNames = HibernateTestUtils.getAllColumnNames(sessionFactory, entityClass)
                     .distinct()
                     .map(String::toUpperCase)
                     .toList();
         }
-        assertThat(jpaColumnNames).isNotEmpty();
+        assertThat(jpaColumnNames)
+                .as("jpa column names for %1$s entity class", entityClass)
+                .isNotEmpty();
         return jpaColumnNames;
     }
 

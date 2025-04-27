@@ -2,11 +2,9 @@ package com.github.jinahya.db2.sample.data.jpa;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Transient;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -32,9 +30,7 @@ import java.time.LocalDate;
 @SuppressWarnings({
         "java:S119" // Type parameter names should comply with a naming convention
 })
-public abstract class MappedEmployee<
-        SELF extends MappedEmployee<SELF, DEPARTMENT>,
-        DEPARTMENT extends MappedDepartment<DEPARTMENT>>
+public abstract class MappedEmployee<SELF extends MappedEmployee<SELF>>
         extends __MappedEntity<SELF, String> {
 
     @Serial
@@ -45,7 +41,6 @@ public abstract class MappedEmployee<
 
     // ----------------------------------------------------------------------------------------------------------- EMPNO
     public static final String COLUMN_NAME_EMPNO = "EMPNO";
-
 
     // -------------------------------------------------------------------------------------------------------- FIRSTNME
 
@@ -74,6 +69,51 @@ public abstract class MappedEmployee<
 
     // ------------------------------------------------------------------------------------------------------------ COMM
 
+    // ------------------------------------------------------------------------------------------ STATIC_FACTORY_METHODS
+
+    // ----------------------------------------------------------------------------------------------------- CONSTRUCTOR
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+
+    @Override
+    public final boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public final int hashCode() {
+        return super.hashCode();
+    }
+
+    // ------------------------------------------------------------------------------------------------------ super._id_
+    @Transient
+    @Override
+    public final String _id_() {
+        return empno;
+    }
+
+    @Override
+    public final void _id_(final String _id_) {
+        this.empno = _id_;
+    }
+
+    // ----------------------------------------------------------------------------------------------------------- empno
+    // ------------------------------------------------------------------------------------------------------- firstnme
+    // ------------------------------------------------------------------------------------------------------- midinit
+    // ------------------------------------------------------------------------------------------------------- lastname
+
+    // -------------------------------------------------------------------------------------------------------- workdept
+
+    // ------------------------------------------------------------------------------------------------------- phoneno
+    // ------------------------------------------------------------------------------------------------------- hiredate
+    // ------------------------------------------------------------------------------------------------------- job
+    // ------------------------------------------------------------------------------------------------------- edlevel
+    // ------------------------------------------------------------------------------------------------------- sex
+    // ------------------------------------------------------------------------------------------------------- birthdate
+    // ------------------------------------------------------------------------------------------------------- salary
+    // ------------------------------------------------------------------------------------------------------- bonus
+    // ------------------------------------------------------------------------------------------------------- comm
+
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = 6)
     @Id
@@ -99,12 +139,11 @@ public abstract class MappedEmployee<
     @Column(name = "LASTNAME", nullable = false, insertable = true, updatable = true)
     private String lastname;
 
+    @jakarta.annotation.Nullable
     @Valid
-    @NotNull
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = COLUMN_NAME_WORKDEPT, referencedColumnName = MappedDepartment.COLUMN_NAME_DEPTNO,
-                nullable = false, insertable = true, updatable = true)
-    private DEPARTMENT workdept;
+    @Basic(optional = true)
+    @Column(name = COLUMN_NAME_WORKDEPT, nullable = true, insertable = true, updatable = true)
+    private String workdept;
 
     @Size(max = 4)
     @Basic(optional = true)

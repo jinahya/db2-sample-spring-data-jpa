@@ -1,5 +1,9 @@
 # Links
 
+## ibm.com
+
+* [The SAMPLE database](https://www.ibm.com/docs/en/db2/12.1.0?topic=samples-sample-database)
+
 ## github.com
 
 ### spring-projects/spring-data-jpa
