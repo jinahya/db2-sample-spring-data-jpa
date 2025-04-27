@@ -22,9 +22,9 @@ public class JdbcTestUtils {
     // -----------------------------------------------------------------------------------------------------------------
     public static void acceptEachTableName(final Connection connection, final Consumer<? super String> consumer)
             throws SQLException {
-        try (var result = connection.getMetaData().getTables(CATALOG, "%", "%", null)) {
+        try (var result = connection.getMetaData().getTables(CATALOG, SCHEMA, "%", null)) {
             while (result.next()) {
-                consumer.accept(result.getString("TABLE_NAME"));
+                consumer.accept(result.getString("TABLE_NAME").toUpperCase());
             }
         }
     }

@@ -91,7 +91,6 @@ public abstract class __MappedEntity_Test<ENTITY extends __MappedEntity<ENTITY, 
                 .forClass(entityClass)
                 .suppress(Warning.SURROGATE_KEY)
                 .suppress(Warning.STRICT_HASHCODE)
-                .withPrefabValues(JsonNode.class, redNode, blueNode)
                 ;
     }
 

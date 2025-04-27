@@ -16,7 +16,8 @@ public final class HibernateTestUtils {
         return ((MappingMetamodel) sessionFactory.getMetamodel())
                 .streamEntityDescriptors()
                 .map(ep -> ((AbstractEntityPersister) ep).getRootTableName())
-                .collect(Collectors.toList());
+                .map(String::toUpperCase)
+                .toList();
     }
 
     public static String getRootEntityName(final SessionFactory sessionFactory, final Class<?> entityClass) {
