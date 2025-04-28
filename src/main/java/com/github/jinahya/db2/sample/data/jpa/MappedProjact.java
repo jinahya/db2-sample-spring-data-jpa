@@ -69,15 +69,15 @@ public abstract class MappedProjact<
     // ----------------------------------------------------------------------------------------------------- CONSTRUCTOR
 
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-    @Override
-    public final boolean equals(final Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public final int hashCode() {
-        return super.hashCode();
-    }
+//    @Override
+//    public final boolean equals(final Object obj) {
+//        return super.equals(obj);
+//    }
+//
+//    @Override
+//    public final int hashCode() {
+//        return super.hashCode();
+//    }
 
     // ------------------------------------------------------------------------------------------------------ super._id_
     @Override
@@ -184,17 +184,20 @@ public abstract class MappedProjact<
     private ACT act;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // Estimated mean number of employees that are needed to staff the activity
     @jakarta.annotation.Nullable
     @Basic(optional = true)
     @Column(name = "ACSTAFF", nullable = true, insertable = true, updatable = true, precision = 5, scale = 2)
     private BigDecimal acstaff;
 
+    // Estimated activity start date
     @NotNull
     @Id
     @Basic(optional = false)
     @Column(name = "ACSTDATE", nullable = false, insertable = true, updatable = false)
     private LocalDate acstdate;
 
+    // Estimated activity completion date
     @jakarta.annotation.Nullable
     @Basic(optional = true)
     @Column(name = "ACENDATE", nullable = true, insertable = true, updatable = true)

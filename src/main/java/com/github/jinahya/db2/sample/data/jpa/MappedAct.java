@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.Serial;
 
 // https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=tables-activity-table-dsn8c10act
+// https://www.ibm.com/docs/en/db2-for-zos/13.0.0?topic=tables-activity-table-dsn8d10act
 @MappedSuperclass
 @Setter
 @Getter

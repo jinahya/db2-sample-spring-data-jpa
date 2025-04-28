@@ -81,16 +81,15 @@ public abstract class MappedEmployee<
     // ----------------------------------------------------------------------------------------------------- CONSTRUCTOR
 
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-
-    @Override
-    public final boolean equals(final Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public final int hashCode() {
-        return super.hashCode();
-    }
+//    @Override
+//    public final boolean equals(final Object obj) {
+//        return super.equals(obj);
+//    }
+//
+//    @Override
+//    public final int hashCode() {
+//        return super.hashCode();
+//    }
 
     // ------------------------------------------------------------------------------------------------------ super._id_
     @Transient

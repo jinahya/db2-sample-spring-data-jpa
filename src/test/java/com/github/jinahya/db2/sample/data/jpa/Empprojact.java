@@ -3,12 +3,15 @@ package com.github.jinahya.db2.sample.data.jpa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 
 @IdClass(EmpprojactId.class)
 @Entity
 @Table(name = MappedEmpprojact.TABLE_NAME)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Empprojact extends MappedEmpprojact<Empprojact, Employee, Project, Act, EmpprojactId> {
 
     @Serial

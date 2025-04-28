@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.jinahya</groupId>
@@ -45,8 +46,8 @@
     <version.maven.failsafe>${version.maven.surefire}</version.maven.failsafe>
     <version.org.projectlombok>1.18.38</version.org.projectlombok>
     <!-- https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html -->
-<!--    <version.org.springframework>6.2.6</version.org.springframework>-->
-<!--    <version.org.springframework.boot>3.4.5</version.org.springframework.boot>-->
+    <!--    <version.org.springframework>6.2.6</version.org.springframework>-->
+    <!--    <version.org.springframework.boot>3.4.5</version.org.springframework.boot>-->
   </properties>
 
   <dependencyManagement>
@@ -290,6 +291,35 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- The package of your generated sources -->
+          <packageName>com.github.jinahya.db2.sample.xml.bind</packageName>
+        </configuration>
+      </plugin>
+      <!--      <plugin>-->
+      <!--        <groupId>org.jvnet.jaxb</groupId>-->
+      <!--        <artifactId>jaxb-maven-plugin</artifactId>-->
+      <!--        <version>4.0.8</version>-->
+      <!--        <executions>-->
+      <!--          <execution>-->
+      <!--            <goals>-->
+      <!--              <goal>generate</goal>-->
+      <!--            </goals>-->
+      <!--          </execution>-->
+      <!--        </executions>-->
+      <!--      </plugin>-->
     </plugins>
   </build>
 

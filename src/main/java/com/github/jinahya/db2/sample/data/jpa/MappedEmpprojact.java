@@ -26,6 +26,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
+// https://www.ibm.com/docs/en/db2-for-zos/13.0.0?topic=tables-employee-project-activity-table-dsn8d10empprojact
 @MappedSuperclass
 @Setter
 @Getter
@@ -73,15 +74,15 @@ public abstract class MappedEmpprojact<
     // ----------------------------------------------------------------------------------------------------- CONSTRUCTOR
 
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-    @Override
-    public final boolean equals(final Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public final int hashCode() {
-        return super.hashCode();
-    }
+//    @Override
+//    public final boolean equals(final Object obj) {
+//        return super.equals(obj);
+//    }
+//
+//    @Override
+//    public final int hashCode() {
+//        return super.hashCode();
+//    }
 
     // ------------------------------------------------------------------------------------------------------ super._id_
     @Override
@@ -208,17 +209,20 @@ public abstract class MappedEmpprojact<
     private ACT act;
 
     // -----------------------------------------------------------------------------------------------------------------
+    // A proportion of the employee's full time (between 0.00 and 1.00) that is to be spent on the activity
     @jakarta.annotation.Nullable
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMPTIME, nullable = true, insertable = true, updatable = true, precision = 5, scale = 2)
     private BigDecimal emptime;
 
+    // Date the activity starts
     @NotNull
     @Id
     @Basic(optional = false)
     @Column(name = COLUMN_NAME_EMSTDATE, nullable = false, insertable = true, updatable = false)
     private LocalDate emstdate;
 
+    // Date the activity ends
     @jakarta.annotation.Nullable
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_EMENDATE, nullable = true, insertable = true, updatable = true)

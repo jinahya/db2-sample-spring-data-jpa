@@ -47,22 +47,22 @@ public abstract class _MappedEntity<SELF extends _MappedEntity<SELF>> extends __
     // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
 
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-    // https://jqno.nl/equalsverifier/manual/jpa-entities/
-    // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-    @Override
-    public final boolean equals(final Object obj) {
-        if (!(obj instanceof _MappedEntity)) {
-            return false;
-        }
-        return Objects.equals(getId(), ((_MappedEntity<?>) obj).getId());
-    }
-
-    // https://jqno.nl/equalsverifier/manual/jpa-entities/
-    // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-    @Override
-    public final int hashCode() {
-        return Objects.hashCode(getId());
-    }
+//    // https://jqno.nl/equalsverifier/manual/jpa-entities/
+//    // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+//    @Override
+//    public final boolean equals(final Object obj) {
+//        if (!(obj instanceof _MappedEntity)) {
+//            return false;
+//        }
+//        return Objects.equals(getId(), ((_MappedEntity<?>) obj).getId());
+//    }
+//
+//    // https://jqno.nl/equalsverifier/manual/jpa-entities/
+//    // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+//    @Override
+//    public final int hashCode() {
+//        return Objects.hashCode(getId());
+//    }
 
     // ------------------------------------------------------------------------------------------------------ super._id_
     @Override

@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 // https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=tables-project-table-dsn8c10proj
+// https://www.ibm.com/docs/en/db2-for-zos/13.0.0?topic=tables-project-table-dsn8d10proj
 @MappedSuperclass
 @Setter
 @Getter
@@ -72,16 +73,15 @@ public abstract class MappedProject<
     // ----------------------------------------------------------------------------------------------------- CONSTRUCTOR
 
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-
-    @Override
-    public final boolean equals(final Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public final int hashCode() {
-        return super.hashCode();
-    }
+//    @Override
+//    public final boolean equals(final Object obj) {
+//        return super.equals(obj);
+//    }
+//
+//    @Override
+//    public final int hashCode() {
+//        return super.hashCode();
+//    }
 
     // ------------------------------------------------------------------------------------------------------ super._id_
     @Transient

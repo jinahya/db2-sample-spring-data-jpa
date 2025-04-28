@@ -85,7 +85,7 @@ public abstract class __MappedEntity<SELF extends __MappedEntity<SELF, ID>, ID e
     // https://jqno.nl/equalsverifier/manual/jpa-entities/
     // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
         if (!(obj instanceof __MappedEntity)) {
             return false;
         }
@@ -95,7 +95,7 @@ public abstract class __MappedEntity<SELF extends __MappedEntity<SELF, ID>, ID e
     // https://jqno.nl/equalsverifier/manual/jpa-entities/
     // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hashCode(_id_());
     }
 

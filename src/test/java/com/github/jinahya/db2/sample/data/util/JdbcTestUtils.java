@@ -13,10 +13,10 @@ import java.util.function.Consumer;
 @Slf4j
 public class JdbcTestUtils {
 
-    private static final String CATALOG = null;
+     public static final String CATALOG = null;
 //    private static final String CATALOG = "CFF8252A-1D8E-475C-B21E-3E49C5AF383A";
 
-    private static final String SCHEMA = "DB2INST1";
+     public static final String SCHEMA = "DB2INST1";
 //    private static final String SCHEMA = null;
 
     // -----------------------------------------------------------------------------------------------------------------

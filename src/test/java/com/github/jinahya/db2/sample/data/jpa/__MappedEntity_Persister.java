@@ -18,11 +18,11 @@ abstract class __MappedEntity_Persister<ENTITY extends __MappedEntity<ENTITY, ?>
         return entityInstance;
     }
 
-    ENTITY persist(final TestEntityManager testEntityManager, final ENTITY entityInstance) {
-        testEntityManager.persist(entityInstance);
-//        testEntityManager.flush();
-        return entityInstance;
-    }
+//    ENTITY persist(final TestEntityManager testEntityManager, final ENTITY entityInstance) {
+//        testEntityManager.persist(entityInstance);
+////        testEntityManager.flush();
+//        return entityInstance;
+//    }
 
     // -----------------------------------------------------------------------------------------------------------------
     final Class<ENTITY> entityClass;

@@ -24,7 +24,4 @@ services:
       ETCD_USERNAME:
       ETCD_PASSWORD:
     volumes:
-      - db2data:/database
-
-volumes:
-  db2data:
+      - /database
