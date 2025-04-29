@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
-import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ class Domain_SpringBootIT {
     @Test
     void jdbcTableNames__() throws SQLException {
         final var jdbcTtableNames = new LinkedHashSet<>(JdbcTestUtils.getTableNames(dataSource.getConnection()));
-        jdbcTtableNames.removeAll(List.of(
+        List.of(
                 "ADEFUSR", // materialized view
                 "VACT",        // view
                 "VASTRDE1",    // view
@@ -78,7 +77,7 @@ class Domain_SpringBootIT {
                 "EMP_ACT", // synonym
                 "EMPACT",  // synonym
                 "PROJ"     // synonym
-        ));
+        ).forEach(jdbcTtableNames::remove);
         log.info("number of all jdbc tables: {}", jdbcTtableNames.size());
         final var jpaTableNames = new LinkedHashSet<>(HibernateTestUtils.getRootTableNames(sessionFactory));
         jdbcTtableNames.removeAll(jpaTableNames);
@@ -100,51 +99,6 @@ class Domain_SpringBootIT {
             log.warn("unknown jpa table: {}", jtn);
         });
         assumeThat(jpaTableNames).isEmpty();
-    }
-
-    @Test
-    void VSTAFAC2() throws SQLException {
-        try (var connection = dataSource.getConnection()) {
-            final var metaData = connection.getMetaData();
-            try (var r = metaData.getBestRowIdentifier(JdbcTestUtils.CATALOG, JdbcTestUtils.SCHEMA, "VSTAFAC2", 0,
-                                                       true)) {
-                while (r.next()) {
-                    final var scope = r.getString("SCOPE");
-                    final var columnName = r.getString("COLUMN_NAME");
-                    log.debug("scope: {}, columnName: {}", scope, columnName);
-                }
-            }
-            try (var r = metaData.getBestRowIdentifier(null, null, "VSTAFAC2", DatabaseMetaData.bestRowTemporary,
-                                                       true)) {
-                while (r.next()) {
-                    final var scope = r.getString("SCOPE");
-                    final var columnName = r.getString("COLUMN_NAME");
-                    log.debug("scope: {}, columnName: {}", scope, columnName);
-                }
-            }
-            try (var r = metaData.getBestRowIdentifier(null, null, "VSTAFAC2", DatabaseMetaData.bestRowTransaction,
-                                                       true)) {
-                while (r.next()) {
-                    final var scope = r.getString("SCOPE");
-                    final var columnName = r.getString("COLUMN_NAME");
-                    log.debug("scope: {}, columnName: {}", scope, columnName);
-                }
-            }
-            try (var r = metaData.getBestRowIdentifier(null, null, "VSTAFAC2", DatabaseMetaData.bestRowSession, true)) {
-                while (r.next()) {
-                    final var scope = r.getString("SCOPE");
-                    final var columnName = r.getString("COLUMN_NAME");
-                    log.debug("scope: {}, columnName: {}", scope, columnName);
-                }
-            }
-            try (var r = metaData.getPrimaryKeys(null, null, "VSTAFAC2")) {
-                while (r.next()) {
-                    final var columnName = r.getString("COLUMN_NAME");
-                    final var keySeq = r.getString("KEY_SEQ");
-                    log.debug("columnName: {}, keySeq: {}", columnName, keySeq);
-                }
-            }
-        }
     }
 
     // -----------------------------------------------------------------------------------------------------------------

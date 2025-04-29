@@ -1,6 +1,5 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
-import com.github.jinahya.db2.sample.xml.bind.Customerinfo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -79,7 +78,7 @@ public abstract class MappedCustomer<SELF extends MappedCustomer<SELF>> extends 
     @jakarta.annotation.Nullable
     @JdbcTypeCode(SqlTypes.SQLXML)
     @Column(name = COLUMN_NAME_INFO, nullable = true, insertable = true, updatable = true, unique = true)
-    private Customerinfo info;
+    private com.github.jinahya.db2.sample.xml.bind.Customerinfo info;
 
     @jakarta.annotation.Nullable
     @Column(name = COLUMN_NAME_HISTORY, nullable = true, insertable = true, updatable = true, unique = true)

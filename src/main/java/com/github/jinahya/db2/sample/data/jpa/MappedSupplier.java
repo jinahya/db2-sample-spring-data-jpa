@@ -1,6 +1,5 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
-import com.github.jinahya.db2.sample.xml.bind.Supplierinfo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -86,7 +85,7 @@ public abstract class MappedSupplier<SELF extends MappedSupplier<SELF>> extends 
     private String sid;
 
     @jakarta.annotation.Nullable
-    @Column(name = COLUMN_NAME_ADDR, nullable = true, insertable = true, updatable = true)
     @JdbcTypeCode(SqlTypes.SQLXML)
-    private Supplierinfo addr;
+    @Column(name = COLUMN_NAME_ADDR, nullable = true, insertable = true, updatable = true)
+    private com.github.jinahya.db2.sample.xml.bind.Supplierinfo addr;
 }

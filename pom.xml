@@ -295,6 +295,9 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>jaxb2-maven-plugin</artifactId>
         <version>3.3.0</version>
+        <configuration>
+          <packageName>com.github.jinahya.db2.sample.xml.bind</packageName>
+        </configuration>
         <executions>
           <execution>
             <id>xjc</id>
@@ -303,10 +306,6 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <!-- The package of your generated sources -->
-          <packageName>com.github.jinahya.db2.sample.xml.bind</packageName>
-        </configuration>
       </plugin>
       <!--      <plugin>-->
       <!--        <groupId>org.jvnet.jaxb</groupId>-->

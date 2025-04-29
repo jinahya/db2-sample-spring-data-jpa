@@ -1,6 +1,5 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
-import com.github.jinahya.db2.sample.xml.bind.Catalog;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -43,15 +42,6 @@ public abstract class MappedCatalog<SELF extends MappedCatalog<SELF>> extends __
     // ----------------------------------------------------------------------------------------------------- CONSTRUCTOR
 
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-//    @Override
-//    public boolean equals(final Object obj) {
-//        return super.equals(obj);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return super.hashCode();
-//    }
 
     // ------------------------------------------------------------------------------------------------------ super._id_
     @Transient
@@ -76,5 +66,5 @@ public abstract class MappedCatalog<SELF extends MappedCatalog<SELF>> extends __
     @JdbcTypeCode(SqlTypes.SQLXML)
     @Basic(optional = true)
     @Column(name = COLUMN_NAME_CATLOG, nullable = true, insertable = true, updatable = true)
-    private Catalog catlog;
+    private com.github.jinahya.db2.sample.xml.bind.Catalog catlog;
 }

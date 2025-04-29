@@ -1,6 +1,5 @@
 package com.github.jinahya.db2.sample.data.jpa;
 
-import com.github.jinahya.db2.sample.xml.bind.Product;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -127,5 +126,5 @@ public abstract class MappedProduct<SELF extends MappedProduct<SELF>> extends __
     @Basic(optional = true)
     @Column(name = "DESCRIPTION", nullable = true, insertable = true, updatable = true)
     @JdbcTypeCode(SqlTypes.SQLXML)
-    private Product description;
+    private com.github.jinahya.db2.sample.xml.bind.Product description;
 }
